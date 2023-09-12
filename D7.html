@@ -35,9 +35,7 @@
 
   <body>
     <div>
-      <h1 class="titolo" onclick="makeItClickable">
-        Questo è il titolo della pagina
-      </h1>
+      <h1 onclick="makeItClickable()">Questo è il titolo della pagina</h1>
       <h2>Questo è il sottotitolo della pagina</h2>
     </div>
 
@@ -78,7 +76,7 @@
       <h3>
         DOM Manipulation is super
         <a
-          onclick="revealFooterLink"
+          onclick="revealFooterLink()"
           href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Client-side_web_APIs/Manipulating_documents"
           >AWESOME!</a
         >
@@ -113,9 +111,9 @@
 
       const changePcontent = function () {
         const change = document.querySelectorAll("div p");
-        change.innerText;
-        change.innerText = "questo è un nuovo testo";
-        console.log(change.innerText);
+        change.forEach((p) => {
+          p.innerText = "mannaggia!";
+        });
       };
 
       changePcontent();
@@ -124,34 +122,31 @@
          Scrivi una funzione che cambi la proprietà href di ogni link (tranne quello nel footer) con il valore https://www.google.com
         */
 
-      // const changeUrls = function () {
+      const changeUrls = function () {
+        const linkChange = document.querySelector("div a");
 
-      //   const linkChange = document.querySelectorAll("body a");
+        linkChange.setAttribute("href", "https://www.google.com");
+      };
 
-      //   console.log(linkChange.setAttribute("href","https://www.google.com"));
-      // };
-
-      // changeUrls();
+      changeUrls();
 
       /* ESERCIZIO 5
          Scrivi una funzione che aggiunga un nuovo elemento lista alla seconda lista non ordinata
       */
 
-      // const addToTheSecond = function () {
-      //   const lis = document.getElementsById("secondList");
-      //   const newLi = document.createElement("li");
+      const addToTheSecond = function () {
+        const lis = document.getElementById("secondList");
+        const newLi = document.createElement("li");
 
-      //   newLi.innerText = "nuovo li nella lista";
+        newLi.innerText = "nuovo li nella lista";
 
-      //   const uList = document.getElementById("#secondList");
+        lis.appendChild(newLi);
+      };
 
-      //   uList.appendChild(newLi);
-      // };
-
-      // addToTheSecond();
+      addToTheSecond();
 
       /* ESERCIZIO 6
-         Scrivi una funzione che aggiunga un secondo paragrafo al primo div
+         Scrivi una funzione che aggiunga un paragrafo al primo div
       */
 
       const addParagraph = function () {
@@ -198,25 +193,22 @@
          Scrivi una funzione che rimuova l'ultima lettera dall'h1 ogni volta che l'utente lo clicca
         */
 
-      // const makeItClickable = function () {
-      //   const rimoveLett = document.getElementsByTagName("h1")[0];
+      const makeItClickable = function () {
+        const rimoveLett = document.getElementsByTagName("h1")[0];
 
-      //   const scomp = h1[h1.length - 1].remove();
+        rimoveLett.innerText = rimoveLett.innerText.slice(0, -1);
+      };
 
-      //   console.log(rimoveLett.setAttribute(scomp));
-      // };
-
-      // makeItClickable();
+      makeItClickable();
 
       /* ESERCIZIO 10
          Crea una funzione che, al click sul footer, riveli l'URL del link interno come contenuto di un alert()
         */
 
       const revealFooterLink = function () {
-        const onClicca = document.getElementsByTagName("footer")[0];
-        alert(
-          "https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Client-side_web_APIs/Manipulating_documents"
-        );
+        const onClicca = document.querySelector("footer a");
+        const hrefValue = onClicca.getAttribute("href");
+        alert(hrefValue);
       };
       revealFooterLink();
 
@@ -224,9 +216,6 @@
          Crea una funzione che crei una tabella nell'elemento con id "tableArea".
          La tabella avrà 5 elementi e questa struttura: immagine, nome prodotto, quantità, prezzo
       */
-
-      // const generateTable = function () {
-      //   const tabella = document.getElementById("#tableArea");
 
       //   const faiTabella= document.createElement("table")
 
